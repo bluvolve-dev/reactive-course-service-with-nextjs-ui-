@@ -16,7 +16,7 @@ const NewCourse = ({ categories, userId }) => {
     const [ saved, setSaved ] = useState(false);
     const [ error, setError ] = useState(null);
 
-    const handleSubmit =async  (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         await fetch('/api', {
             method: 'POST',
