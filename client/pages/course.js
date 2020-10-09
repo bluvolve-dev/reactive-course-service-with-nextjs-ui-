@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import Link from 'next/link';
 import { v4 as uuid } from 'uuid';
-import axios from 'axios';
 
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
@@ -89,9 +88,10 @@ const NewCourse = ({ categories, userId }) => {
 }
 
 export const getServerSideProps = async () => {
-    const res = await axios(`${API_HOST}/course/category`);
+    const res = await fetch(`${API_HOST}/course/category`);
+    const data = await res.json();
     return { props: {
-            categories: res.data,
+            categories: data,
             userId: uuid() // Fake user id
         }
     }

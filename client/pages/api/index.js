@@ -1,5 +1,4 @@
 import nc from 'next-connect';
-import axios from 'axios';
 
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
@@ -10,9 +9,16 @@ const handler = nc();
 handler.post(async (req, res) => {
     console.log("api call");
 
-    let course = req.body.course;
+    const course = req.body.course;
 
-    await axios.post(`${API_HOST}/course`, course).then(r => {
+    await fetch('http://localhost:4500/course', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(course),
+    }).then(r => {
         if(r.status === 201){
             res.json({ message: "ok" });
         }else{

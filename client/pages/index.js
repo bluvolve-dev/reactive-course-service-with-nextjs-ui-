@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import axios from 'axios';
-
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 const { API_HOST } = publicRuntimeConfig;
