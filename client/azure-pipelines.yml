@@ -1,0 +1,44 @@
+name: $(Date:yyyyMMdd)$(Rev:.r)
+variables:
+  - group: build
+jobs:
+  - job: Build
+    pool:
+      vmImage: ubuntu-16.04
+    steps:
+      - checkout: self
+        clean: true
+        persistCredentials: true
+      - bash: |
+          echo "pipeline variable 'app.registry.url' was not set but is required."
+          exit 1
+        condition: eq(variables['app.registry.url'], '')
+        name: ValidateAppRegistryUrl
+      - bash: |
+          echo "pipeline variable 'app.registry.username' was not set but is required."
+          exit 1
+        condition: eq(variables['app.registry.username'], '')
+        name: ValidateAppRegistryUsername
+      - bash: |
+          echo "pipeline variable 'app.registry.password' was not set but is required."
+          exit 1
+        condition: eq(variables['app.registry.password'], '')
+        name: ValidateAppRegistryPassword
+      - bash: |
+          BUILD_NUMBER=$(Build.BuildId)-$(git rev-parse --short ${BUILD_SOURCEVERSION})
+          echo "##vso[build.updatebuildnumber]${BUILD_NUMBER}"
+        name: Version
+      - bash: |
+          docker login ${APP_REGISTRY_URL} -u ${APP_REGISTRY_USERNAME} -p ${APP_REGISTRY_PASSWORD}
+        name: DockerLogin
+        env:
+          APP_REGISTRY_PASSWORD: $(app.registry.password)
+      - bash: |
+          docker build ${BUILD_SOURCESDIRECTORY} \
+          -f ./client/Dockerfile \
+          -t ${APP_REGISTRY_URL}/course-service-client:${BUILD_BUILDNUMBER} \
+          -t latest
+        name: DockerBuild
+      - bash: |
+          docker push ${APP_REGISTRY_URL}/course-service-client:${BUILD_BUILDNUMBER}
+        name: DockerPush
