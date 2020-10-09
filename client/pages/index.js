@@ -73,9 +73,10 @@ const Index = ({ initialCourses }) => {
 
 export const getServerSideProps = async () => {
   console.log("Fetch data...");
-  const res = await axios(`${API_HOST}/course`);
+  const res = await fetch(`${API_HOST}/course`);
+  const data = await res.json();
   return { props: {
-      initialCourses: res.data
+      initialCourses: data
     }
   }
 };
