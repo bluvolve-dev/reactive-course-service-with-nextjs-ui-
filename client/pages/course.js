@@ -83,7 +83,7 @@ const NewCourse = ({ categories, userId }) => {
     </div>
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
     const res = await fetch('http://localhost:4500/course/category');
     const json = await res.json();
     return { props: {
