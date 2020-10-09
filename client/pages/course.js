@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
-import Link from "next/link";
+import Link from 'next/link';
 import { v4 as uuid } from 'uuid';
+import axios from 'axios';
+
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
+const { API_HOST } = publicRuntimeConfig;
 
 const NewCourse = ({ categories, userId }) => {
 
@@ -84,10 +89,9 @@ const NewCourse = ({ categories, userId }) => {
 }
 
 export const getServerSideProps = async () => {
-    const res = await fetch('http://localhost:4500/course/category');
-    const json = await res.json();
+    const res = await axios(`${API_HOST}/course/category`);
     return { props: {
-            categories: json,
+            categories: res.data,
             userId: uuid() // Fake user id
         }
     }

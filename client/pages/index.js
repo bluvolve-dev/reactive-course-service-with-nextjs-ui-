@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 
-import Link from "next/link";
+import axios from 'axios';
 
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 const { API_HOST } = publicRuntimeConfig;
+
+console.log(API_HOST);
 
 const Index = ({ initialCourses }) => {
   const [ courses, setCourses ] = useState( initialCourses );
@@ -70,10 +73,9 @@ const Index = ({ initialCourses }) => {
 
 export const getServerSideProps = async () => {
   console.log("Fetch data...");
-  const res = await fetch(`${API_HOST}/course`);
-  const json = await res.json();
+  const res = await axios(`${API_HOST}/course`);
   return { props: {
-      initialCourses: json
+      initialCourses: res.data
     }
   }
 };
