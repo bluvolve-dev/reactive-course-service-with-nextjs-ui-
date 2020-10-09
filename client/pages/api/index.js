@@ -11,7 +11,7 @@ handler.post(async (req, res) => {
 
     const course = req.body.course;
 
-    await fetch('http://localhost:4500/course', {
+    await fetch(`${API_HOST}/course`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
