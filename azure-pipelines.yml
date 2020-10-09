@@ -49,11 +49,11 @@ jobs:
       APP_REGISTRY_PASSWORD: $(app.registry.password)
   - bash: |
       docker build ${BUILD_SOURCESDIRECTORY} \
-      -t ${APP_REGISTRY_URL}/${BUILD_REPOSITORY_NAME}:${BUILD_BUILDNUMBER} \
+      -t ${APP_REGISTRY_URL}/course-service:${BUILD_BUILDNUMBER} \
       -t latest
     name: DockerBuild
   - bash: |
-      docker push ${APP_REGISTRY_URL}/${BUILD_REPOSITORY_NAME}:${BUILD_BUILDNUMBER}
+      docker push ${APP_REGISTRY_URL}/course-service:${BUILD_BUILDNUMBER}
     name: DockerPush
   - bash: |
       mkdir ${BUILD_SOURCESDIRECTORY}/output
