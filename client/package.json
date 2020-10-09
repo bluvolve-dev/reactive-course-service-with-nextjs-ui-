@@ -1,0 +1,18 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "next": "9.5.3",
+    "next-connect": "^0.9.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "uuid": "^8.3.1"
+  }
+}

@@ -1,0 +1,98 @@
+html {
+  font-family: Ubuntu,sans-serif;
+}
+
+body {
+  background-color: #f9f9f9;
+  font-family: Ubuntu,sans-serif;
+  transition: all .25s ease-in-out;
+  position: relative;
+  left: 0;
+  margin: 0;
+  display: block;
+}
+
+div{
+  margin: 6px;
+}
+
+th {
+  padding: 12px;
+  text-align: left;
+  background-color: #54555a;
+  color: white;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+td {
+  border: 1px;
+  padding: 8px;
+}
+
+table {
+  margin-top: 12px;
+  border-collapse: collapse;
+  width: 100%;
+  text-decoration: none;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+button {
+  transition-duration: 0.4s;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 2px;
+  font-size: 12px;
+  background-color: #277ebf;
+  padding: 12px 28px;
+  margin-bottom: 6px;
+}
+
+button:hover {
+  background-color: #3d83b8;
+  color: white;
+}
+
+form{
+  padding-top: 24px;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #277ebf;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #3d83b8;
+}
+
+* {
+  box-sizing: border-box;
+}

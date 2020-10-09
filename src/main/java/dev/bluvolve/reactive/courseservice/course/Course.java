@@ -1,5 +1,6 @@
 package dev.bluvolve.reactive.courseservice.course;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,14 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 public class Course {
+    public Course(String title, Category category, UUID createdByUserId, Long duration) {
+        this.id = UUID.randomUUID();
+        this.title = title;
+        this.category = category;
+        this.createdByUserId = createdByUserId;
+        this.duration = duration;
+    }
+
     @Id
     @Column(nullable = false, updatable = false)
     private UUID id;
