@@ -1,11 +1,9 @@
-import nextconnect from 'next-connect';
+import nextConnect from 'next-connect';
 import EventSource from 'eventsource';
 
-import getConfig from 'next/config';
-const { publicRuntimeConfig } = getConfig();
-const { API_HOST } = publicRuntimeConfig;
+const API_HOST  = process.env.API_HOST;
 
-const handler = nextconnect();
+const handler = nextConnect();
 
 const sseMiddleware = (req, res, next) => {
     res.setHeader('Content-Type', 'text/event-stream');
