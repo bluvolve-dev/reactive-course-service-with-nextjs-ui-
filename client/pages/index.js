@@ -6,20 +6,21 @@ import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 const { API_HOST } = publicRuntimeConfig;
 
-console.log(API_HOST);
-
 const Index = ({ initialCourses }) => {
-  const [ courses, setCourses ] = useState( initialCourses );
+  const [ courses, setCourses ] = useState(initialCourses);
 
   useEffect(() => {
-    let eventSource = new EventSource(`${API_HOST}/course/sse`);
-    eventSource.onopen = (e) => { console.log('listen to sse endpoint', e)};
+    let eventSource = new EventSource(`/api`);
+    eventSource.onopen = (e) => { console.log('listen to api-sse endpoint', e)};
+
     eventSource.onmessage = (e) => {
       const course = JSON.parse(e.data);
+
       if (!courses.includes(course)){
         setCourses( courses => [...courses, course]);
       }
     };
+
     eventSource.onerror = (e) => { console.log('error', e )};
 
     // returned function will be called on component unmount
@@ -70,7 +71,6 @@ const Index = ({ initialCourses }) => {
 }
 
 export const getServerSideProps = async () => {
-  console.log("Fetch data...");
   const res = await fetch(`${API_HOST}/course`);
   const data = await res.json();
   return { props: {
