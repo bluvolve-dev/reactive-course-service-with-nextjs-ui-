@@ -10,7 +10,7 @@ const Index = ({ initialCourses }) => {
   const [ courses, setCourses ] = useState(initialCourses);
 
   useEffect(() => {
-    let eventSource = new EventSource(`/api`);
+    let eventSource = new EventSource(`/api/course`);
     eventSource.onopen = (e) => { console.log('listen to api-sse endpoint', e)};
 
     eventSource.onmessage = (e) => {

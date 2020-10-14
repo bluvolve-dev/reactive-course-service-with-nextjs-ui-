@@ -7,7 +7,6 @@ const { publicRuntimeConfig } = getConfig();
 const { API_HOST } = publicRuntimeConfig;
 
 const NewCourse = ({ categories, userId }) => {
-
     const emptyCourse = {
         title: null,
         description: null,
@@ -22,7 +21,7 @@ const NewCourse = ({ categories, userId }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await fetch('/api', {
+        await fetch('/api/course', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
