@@ -1,7 +1,7 @@
 # reactive-course-service
-Reactive Course Service Example
+Course Service - Reactive Spring Boot API with SSR NextJs UI
 
 For more information read my article on Medium.com
 
-<https://medium.com/@rico.fritzsche/creating-a-reactive-restful-api-with-spring-boot-e706954f0633>
+<https://levelup.gitconnected.com/reactive-spring-boot-api-with-next-js-client-b08147ae5712>
 
